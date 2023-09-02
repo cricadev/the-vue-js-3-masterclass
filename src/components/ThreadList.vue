@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import sourceData from '@/data.json'
 
 
-const posts = ref(sourceData.posts)
+
 const users = ref(sourceData.users)
 
-const postById = (postId) => {
-  return posts.value.find((post) => post.id === postId)
-}
-const userById = (userId) => {
+
+const userById = (userId: string) => {
   return users.value.find((user) => user.id === userId)
 }
 
-const props = defineProps({
+defineProps({
   threads: {
     type: Array,
     required: true
@@ -24,21 +22,24 @@ const props = defineProps({
 </script>
 <template>
   <div class="">
-
     <h2 class="p-5 text-2xl font-bold">Threads</h2>
     <div class="flex justify-between p-4 even:bg-green-100 odd:bg-green-50" v-for="thread in threads" :key="thread.id">
 
+
       <div class="flex flex-col gap-2">
         <p>
-          <a :href="`thread/${thread.id}`" class="">
+          <router-link :to="{
+            name: 'ThreadShow',
+            params: { threadId: thread.id }
+          }" class="">
             {{ thread.title }}
-          </a>
+          </router-link>
         </p>
         <p>
           By <a href="#" class="text-red-300">
             {{ userById(thread.userId).name }}
           </a>,
-          {{ thread.publishedAt }}
+          <AppDate :timestamp="thread.publishedAt"></AppDate>
         </p>
       </div>
 
@@ -57,10 +58,8 @@ const props = defineProps({
             </a>
 
           </p>
-          <p>
-            {{ thread.publishedAt }}
+          <AppDate :timestamp="thread.publishedAt"></AppDate>
 
-          </p>
 
         </div>
       </div>
