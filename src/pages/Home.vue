@@ -7,9 +7,11 @@ import { ref } from 'vue';
 
 const forums = ref(sourceData.forums)
 
+
 </script>
 <template>
   <div class="p-32">
+
     <category-list :forums="forums"></category-list>
   </div>
 </template>

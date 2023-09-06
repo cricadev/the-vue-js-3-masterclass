@@ -15,6 +15,10 @@ defineProps({
   threads: {
     type: Array,
     required: true
+  },
+  category: {
+    type: Object,
+    required: true
   }
 })
 
@@ -22,8 +26,9 @@ defineProps({
 </script>
 <template>
   <div class="">
+    <h2 class="p-5 text-2xl font-bold text-red-500 bg-red-100">{{ category.name }}</h2>
     <h2 class="p-5 text-2xl font-bold">Threads</h2>
-    <div class="flex justify-between p-4 even:bg-green-100 odd:bg-green-50" v-for="thread in threads" :key="thread.id">
+    <div class="flex justify-between p-4 even:bg-green-100 odd:bg-green-200" v-for="thread in threads" :key="thread.id">
 
 
       <div class="flex flex-col gap-2">

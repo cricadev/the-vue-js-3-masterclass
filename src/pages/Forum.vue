@@ -8,6 +8,7 @@ const props = defineProps({
     required: true
   }
 })
+const categories = ref(sourceData.categories)
 
 const forum = computed(() => {
   return sourceData.forums.find((forum) => forum.id === props.id)
@@ -17,12 +18,16 @@ const threads = computed(() => {
   return sourceData.threads.filter((thread) => thread.forumId === props.id)
 })
 
+const category = computed(() => {
+  return sourceData.categories.find((category) => category.id === forum.value.categoryId)
+})
+
 </script>
 <template lang="">
    <div>
-    <h1 class="text-3xl font-bold mb-4">{{ forum.name }}</h1>
-    <p class="text-gray-500 mb-8">{{ forum.description }}</p>
-    <thread-list :threads="threads"></thread-list>
+    <h1 class="mb-4 text-3xl font-bold">{{ forum.name }}</h1>
+    <p class="mb-8 text-gray-500">{{ forum.description }}</p>
+    <thread-list :threads="threads" :category="category"></thread-list>
   </div>
 </template>
 

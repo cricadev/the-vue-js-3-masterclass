@@ -52,6 +52,12 @@ const router = createRouter({
       name: 'Forum',
       component: () => import('../pages/Forum.vue'),
       props: true,
+    },
+    {
+      path: '/categories/:id',
+      name: 'Category',
+      component: () => import('../pages/Category.vue'),
+      props: true,
     }
 
 
