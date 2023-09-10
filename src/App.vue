@@ -6,8 +6,21 @@ import NavBar from './components/NavBar.vue';
 
 <template>
   <div class="">
-    <nav-bar></nav-bar>
-    <RouterView />
+
+    <suspense>
+      <template #default>
+        <router-view></router-view>
+
+      </template>
+      <template #fallback>
+        <div class="text-5xl font-bold text-center">
+          LOADING
+        </div>
+      </template>
+    </suspense>
+
+
+
   </div>
 </template>
 

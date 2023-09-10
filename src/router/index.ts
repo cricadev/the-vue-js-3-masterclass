@@ -4,6 +4,7 @@ import ThreadShow from '../pages/ThreadShow.vue'
 import NotFound from '../pages/NotFound.vue'
 import sourceData from '../data.json'
 import Pokemon from '../components/PokemonDisplay.vue'
+import PokemonSingle from '../components/PokemonComponent.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,6 +47,13 @@ const router = createRouter({
       path: '/pokemon',
       name: 'Pokemon',
       component: Pokemon
+    },
+    {
+      path: '/pokemon/:id',
+      name: 'PokemonLink',
+      component: PokemonSingle,
+
+
     },
     {
       path: '/forum/:id',

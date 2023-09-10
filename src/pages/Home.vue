@@ -2,7 +2,7 @@
 
 import CategoryList from "@/components/CategoryList.vue"
 import sourceData from "@/data.json"
-import { ref } from 'vue';
+import { ref, provide } from 'vue';
 
 
 const forums = ref(sourceData.forums)
