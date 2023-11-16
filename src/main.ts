@@ -12,7 +12,6 @@ app.use(createPinia())
 app.use(router)
 
 
-
 const components = import.meta.glob('./components/App*.vue', { eager: true });
 Object.keys(components).forEach((path) => {
   const name = path.match(/\.\/components\/(.*)\.vue$/)[1];

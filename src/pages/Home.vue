@@ -1,18 +1,17 @@
 <script setup lang="ts">
 
 import CategoryList from "@/components/CategoryList.vue"
-import sourceData from "@/data.json"
 import { ref, provide } from 'vue';
+import { storeToRefs } from "pinia";
+import { useCategoriesStore } from "@/stores/CategoriesStore"
 
-
-const forums = ref(sourceData.forums)
-
+const { categories } = storeToRefs(useCategoriesStore())
 
 </script>
 <template>
   <div class="p-32">
 
-    <category-list :forums="forums"></category-list>
+    <category-list :categories="categories"></category-list>
   </div>
 </template>
 <style></style>

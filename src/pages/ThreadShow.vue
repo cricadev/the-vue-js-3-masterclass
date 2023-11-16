@@ -1,37 +1,35 @@
 <script setup lang="ts">
-import sourceData from '@/data.json'
 import PostList from '@/components/PostList.vue'
 import PostEditor from '@/components/PostEditor.vue'
-import { ref, computed } from 'vue'
-const threads = ref(sourceData.threads)
-const posts = ref(sourceData.posts)
-const users = ref(sourceData.users)
-
-
-
-const thread = computed(() => {
-  return threads.value.find((thread) => thread.id === props.threadId)
-})
-
-const threadPosts = computed(() => {
-  return posts.value.filter((post) => post.threadId === props.threadId)
-
-})
+import { useThreadsStore } from '@/stores/ThreadsStore';
+import { usePostsStore } from '@/stores/PostsStore';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
+const threadsStore = useThreadsStore()
+const postsStore = usePostsStore()
 const props = defineProps({
   threadId: {
     type: String,
     required: true
   }
 })
+
+
+const { threads } = storeToRefs(threadsStore);
+const { findThreadById } = threadsStore
+
+const thread = findThreadById(props.threadId);
+const threadPosts = computed(() => postsStore.posts.filter((post) => post.threadId === props.threadId))
+
+
+
+
 const submitNewPost = (eventData) => {
-  console.log(eventData)
   const post = {
     ...eventData,
     threadId: props.threadId
   }
-  posts.value.push(post)
-  thread.value?.posts.push(post.id)
-  console.log(post)
+  postsStore.createPost(post)
 }
 
 </script>

@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import sourceData from '@/data.json'
+import { useForumStore } from "@/stores/forumStore"
+
+const store = useForumStore()
+
+const { users, findUserById } = store;
 
 
 
-const users = ref(sourceData.users)
 
-
-const userById = (userId: string) => {
-  return users.value.find((user) => user.id === userId)
-}
 
 defineProps({
   threads: {
@@ -42,7 +40,7 @@ defineProps({
         </p>
         <p>
           By <a href="#" class="text-red-300">
-            {{ userById(thread.userId).name }}
+            {{ findUserById(thread.userId).name }}
           </a>,
           <AppDate :timestamp="thread.publishedAt"></AppDate>
         </p>
@@ -53,12 +51,12 @@ defineProps({
         <p>
           {{ thread.posts.length }}
         </p>
-        <img :src="userById(thread.userId)?.avatar" alt="" class="object-cover w-8 h-8 rounded-full">
+        <img :src="findUserById(thread.userId)?.avatar" alt="" class="object-cover w-8 h-8 rounded-full">
         <div>
 
           <p class="text-xs">
             <a href="">
-              {{ userById(thread.userId).name }}
+              {{ findUserById(thread.userId).name }}
 
             </a>
 

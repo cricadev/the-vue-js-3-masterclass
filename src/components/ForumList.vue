@@ -32,7 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from 'vue'
 
 
 

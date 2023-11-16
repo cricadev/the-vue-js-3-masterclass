@@ -1,26 +1,23 @@
 <script setup lang="ts">
-import sourceData from "@/data.json"
 import ThreadList from "@/components/ThreadList.vue"
-import { ref, computed } from 'vue';
+import { useForumStore } from "@/stores/forumStore"
+
+const store = useForumStore()
+
+const { findForumById, findCategoryThatMatchesForum, findThreadsThatMatchesForum } = store;
+
 const props = defineProps({
   id: {
     type: String,
     required: true
   }
 })
-const categories = ref(sourceData.categories)
 
-const forum = computed(() => {
-  return sourceData.forums.find((forum) => forum.id === props.id)
-})
+const forum = findForumById(props.id);
+const category = findCategoryThatMatchesForum(forum?.categoryId);
+const threads = findThreadsThatMatchesForum(props.id);
 
-const threads = computed(() => {
-  return sourceData.threads.filter((thread) => thread.forumId === props.id)
-})
 
-const category = computed(() => {
-  return sourceData.categories.find((category) => category.id === forum.value.categoryId)
-})
 
 </script>
 <template lang="">

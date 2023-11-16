@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import ThreadShow from '../pages/ThreadShow.vue'
 import NotFound from '../pages/NotFound.vue'
-import sourceData from '../data.json'
+import { useThreadsStore } from '@/stores/ThreadsStore'
 import Pokemon from '../components/PokemonDisplay.vue'
 import PokemonSingle from '../components/PokemonComponent.vue'
 const router = createRouter({
@@ -21,7 +21,7 @@ const router = createRouter({
       beforeEnter(to, from, next) {
 
         //check if thread exists
-        const threadExists = sourceData.threads.find(thread => thread.id === to.params.threadId)
+        const threadExists = useThreadsStore().threads.find(thread => thread.id === to.params.threadId)
 
         //if exists continue
         if (threadExists) {

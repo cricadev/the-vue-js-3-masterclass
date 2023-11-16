@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import ForumList from "@/components/ForumList.vue"
-import sourceData from "@/data.json"
 
 import { ref, computed } from 'vue';
+import { useForumStore } from "@/stores/forumStore"
 
+const store = useForumStore()
 
-const categories = ref(sourceData.categories)
+const { forums } = store;
+
 
 const props = defineProps({
-  forums: {
+  categories: {
     type: Array,
     required: true
   }
 })
+console.log(forums, 'forums')
+
+console.log(props.categories, 'props.categories')
 
 </script>
 <template lang="">
