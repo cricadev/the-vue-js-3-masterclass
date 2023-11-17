@@ -16,7 +16,7 @@ const emits = defineEmits(['save'])
 
 const save = () => {
   const post = {
-    userId: 'rpbB8C6ifrYmNDufMERWfQUoa202',
+    userId: 's7Q8Zi2N1SPa5ahzssq9kbyp138',
     publishedAt: new Date().getTime(),
     text: text.value,
   }

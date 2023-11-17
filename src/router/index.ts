@@ -5,6 +5,7 @@ import NotFound from '../pages/NotFound.vue'
 import { useThreadsStore } from '@/stores/ThreadsStore'
 import Pokemon from '../components/PokemonDisplay.vue'
 import PokemonSingle from '../components/PokemonComponent.vue'
+import Profile from '../pages/Profile.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -12,6 +13,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
     {
       path: '/thread/:threadId',
@@ -48,6 +54,7 @@ const router = createRouter({
       name: 'Pokemon',
       component: Pokemon
     },
+
     {
       path: '/pokemon/:id',
       name: 'PokemonLink',
